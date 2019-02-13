@@ -5,4 +5,5 @@
 ## Meta
 
 * [LaTeX](meta/latex.md)
+* [Images](meta/images.md)
 
