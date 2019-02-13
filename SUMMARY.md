@@ -7,3 +7,7 @@
 * [LaTeX](meta/latex.md)
 * [Images](meta/images.md)
 
+## Math
+
+* [Statistics](math/statistics.md)
+
