@@ -7,7 +7,6 @@
 * [LaTeX](meta/latex.md)
 * [Images](meta/images.md)
 * [Juptyter](meta/jupyter.md)
-* [Sample Jupyter Notebook](meta/Bokeh_notebook.html)
 
 ## Math
 
