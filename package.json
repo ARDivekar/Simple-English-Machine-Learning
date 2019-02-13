@@ -1,0 +1,29 @@
+{
+  "name": "seml",
+  "version": "0.0.1",
+  "description": "Simple English Machine Learning",
+  "main": "SUMMARY.md",
+  "scripts": {
+    "docs:prepare": "gitbook install",
+    "docs:build": "npm run docs:prepare && rm -rf _book && gitbook build",
+    "docs:watch": "npm run docs:prepare && gitbook serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ARDivekar/Simple-English-Machine-Learning.git"
+  },
+  "author": "Abhishek Divekar (ARDivekar@)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ARDivekar/Simple-English-Machine-Learning/issues"
+  },
+  "homepage": "https://github.com/ARDivekar/Simple-English-Machine-Learning#readme",
+  "devDependencies": {
+    "gitbook-cli": "^2.3.2"
+  },
+  "dependencies": {
+    "gitbook-plugin-include": "^0.1.0",
+    "gitbook-plugin-include-html": "^0.2.0",
+    "gitbook-plugin-mathjax": "^1.1.2"
+  }
+}

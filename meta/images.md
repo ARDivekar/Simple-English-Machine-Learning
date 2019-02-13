@@ -4,7 +4,7 @@ description: Page with image content
 
 # Images
 
-This is a page with images
+Images which are linked will show up on the page.
 
 ![](../.gitbook/assets/bokeh_plot.png)
 

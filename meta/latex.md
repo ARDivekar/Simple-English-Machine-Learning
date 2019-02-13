@@ -1,16 +1,26 @@
 ---
-description: How to write LaTeX in Markdown
+description: LaTeX in Markdown files
 ---
 
 # LaTeX
 
-Here is a sample.
+We use the ["mathjax" plugin](https://plugins.gitbook.com/plugin/mathjax).
 
+Here is a one-line sample:
 
+$$\frac{a}{b}$$
 
-$$
-\frac{a}{b}
-$$
+A slightly longer sample:
 
-* Looks pretty cool tbh
+{% math %}
+
+A = [1, 2, 3]
+\\
+B = [1, 2, 3]
+\\
+A \cdot B = 14
+
+{% endmath %}
+
+Looks pretty cool tbh.
 

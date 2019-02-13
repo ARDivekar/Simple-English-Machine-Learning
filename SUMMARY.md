@@ -2,14 +2,14 @@
 
 * [About Simple English Machine Learning](README.md)
 
-## Meta
+## Meta (Gitbook setup)
 
+* [Building and watching this Gitbook](meta/gitbook.md)
 * [LaTeX](meta/latex.md)
 * [Images](meta/images.md)
-* [Juptyter](meta/jupyter.md)
+* [Jupyter](meta/jupyter.md)
 
 ## Math
 
 * [Statistics](math/statistics/README.md)
   * [Bayesian Statistics](math/statistics/bayesian-statistics.md)
-
