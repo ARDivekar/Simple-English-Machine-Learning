@@ -9,5 +9,6 @@
 
 ## Math
 
-* [Statistics](math/statistics.md)
+* [Statistics](math/statistics/README.md)
+  * [Bayesian Statistics](math/statistics/bayesian-statistics.md)
 
