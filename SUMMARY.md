@@ -17,7 +17,7 @@
 ## Neural Networks
 
 * [Basic Feedforward Neural Networks](neural-networks/basic-feedforward-neural-networks/README.md)
+  * [Structure of a Feedforward Neuron](neural-networks/basic-feedforward-neural-networks/structure-of-a-feedforward-neuron.md)
   * [Backpropagation in Feedforward Neural Networks](neural-networks/basic-feedforward-neural-networks/backpropagation-in-feedforward-neural-networks/README.md)
     * [Neural Computational graphs](neural-networks/basic-feedforward-neural-networks/backpropagation-in-feedforward-neural-networks/neural-computational-graphs.md)
-  * [Structure of a Feedforward Neuron](neural-networks/basic-feedforward-neural-networks/structure-of-a-feedforward-neuron.md)
 
