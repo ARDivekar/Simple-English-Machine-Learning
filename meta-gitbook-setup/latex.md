@@ -12,15 +12,5 @@ $$\frac{a}{b}$$
 
 A slightly longer sample:
 
-{% math %}
-
-A = [1, 2, 3]
-\\
-B = [1, 2, 3]
-\\
-A \cdot B = 14
-
-{% endmath %}
-
 Looks pretty cool tbh.
 

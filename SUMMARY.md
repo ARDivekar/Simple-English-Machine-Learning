@@ -2,14 +2,19 @@
 
 * [About Simple English Machine Learning](README.md)
 
-## Meta (Gitbook setup)
+## Meta \(Gitbook setup\)
 
-* [Building and watching this Gitbook](meta/gitbook.md)
-* [LaTeX](meta/latex.md)
-* [Images](meta/images.md)
-* [Jupyter](meta/jupyter.md)
+* [Building and watching this Gitbook](meta-gitbook-setup/gitbook.md)
+* [LaTeX](meta-gitbook-setup/latex.md)
+* [Images](meta-gitbook-setup/images.md)
+* [Jupyter](meta-gitbook-setup/jupyter.md)
 
 ## Math
 
 * [Statistics](math/statistics/README.md)
   * [Bayesian Statistics](math/statistics/bayesian-statistics.md)
+
+## Neural Networks
+
+* [Neural Computational graphs](neural-networks/neural-computational-graphs.md)
+
