@@ -20,7 +20,7 @@ w = \textnormal{weight vector of neuron} \\
 b = \textnormal{bias unit (this value is learnt during training)}
 $$
 
-During training, we learn the values of the vectors $$w$$ and the scalar $$b$$ , so we usually concatenate them into a single vector: $$w = [w, b]$$. Going forward, I will use $$w$$ to mean this concatenated vector.
+During training, we learn the values of the vectors $$w$$ and the scalar $$b$$ , so we usually concatenate them into a single vector: $$w = [w, b]$$. **Going forward, I will use** $$w$$ **to mean this concatenated vector.**
 
 
 
