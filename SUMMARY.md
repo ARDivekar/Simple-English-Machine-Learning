@@ -2,7 +2,7 @@
 
 * [About Simple English Machine Learning](README.md)
 
-## Meta \(Gitbook setup\)
+## Meta (Gitbook setup)
 
 * [Building and watching this Gitbook](meta-gitbook-setup/gitbook.md)
 * [LaTeX](meta-gitbook-setup/latex.md)
