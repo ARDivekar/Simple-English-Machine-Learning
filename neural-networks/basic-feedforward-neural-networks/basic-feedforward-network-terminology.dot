@@ -1,0 +1,191 @@
+digraph NeuralNetwork {
+
+    rankdir=LR;
+    ranksep=1.65;
+    newrank=true;
+    splines=line;
+    nodesep=0.5;
+    forcelabels=true;
+    node[
+        // label="",
+        fixedsize=true, 
+        width=0.65,
+        height=0.65,
+        fontsize=11, 
+        shape=circle
+    ];
+    edge[color=gray90, arrowsize=0.5, fontsize = 10];
+    compound=true;
+    
+    subgraph cluster_X {
+        label=<D<sub>i</sub> = X<sub>0</sub>>;
+        node [style=solid, color=grey65, shape=square, fontsize=12];
+        // Nodes:
+        x0 [label=<X<sub>(0, 0)</sub>>]
+        x1 [label=<X<sub>(0, 1)</sub>>]
+        x2 [label=<X<sub>(0, 2)</sub>>]
+        x_bias [label="+1", color=grey65, shape=circle]
+    }
+
+    subgraph cluster_W_0 {
+		label = <W<sub>0</sub>>;
+		color=grey65;
+        // Nodes:
+		node [style=solid, color=red2];
+        w00 [label=<W<sub>(0, 0)</sub>>];
+		w01 [label=<W<sub>(0, 1)</sub>>, color=dodgerblue3];
+        w02 [label=<W<sub>(0, 2)</sub>>];
+        w0_bias [label="+1", color=grey65]
+	}
+
+    subgraph cluster_W_1 {
+		label = <W<sub>1</sub>>;
+		color=grey65;
+        // Nodes:
+		node [style=solid, color=red2];
+        w10 [label=<W<sub>(1, 0)</sub>>];
+		w11 [label=<W<sub>(1, 1)</sub>>];
+        w12 [label=<W<sub>(1, 2)</sub>>];
+        w1_bias [label="+1", color=grey65]
+	}
+
+    subgraph cluster_W_2 {
+		label = <W<sub>2</sub>   =  W<sub>L-1</sub>>;
+		color=grey65;
+        // Nodes:
+		node [style=solid, color=red2];
+        w20 [label=<W<sub>(2, 0)</sub>>];
+		w21 [label=<W<sub>(2, 1)</sub>>];
+        w22 [label=<W<sub>(2, 2)</sub>>];
+        // w2_bias [label="", style=invis]
+	}
+
+    subgraph cluster_W_2_bias {
+		label=""
+        color=white;
+        w2_bias [label="", style=invis]
+	}
+
+
+
+    subgraph cluster_output_layer {
+		label = "Output \nLayer";
+		color=grey65;
+        // Nodes:
+		node [style=solid, shape=none];
+        o0 [label=""]
+        o1 [label="Softmax,\netc."]
+        o2 [label=""]
+        o3 [label=""]
+	}
+
+    subgraph cluster_error_function {
+        rank=same;
+        color=white;
+        label="";
+        node [style=solid, color=black, shape=square];
+        e0 [style=invis]
+        e1 [label="Error\n function"]
+        y [label=<Y<sub>i</sub>>]
+        e3 [style=invis]
+        {
+            e3 -> y [style=invis]
+            y -> e1 [color=black]
+            e1 -> e0 [style=invis]
+        }
+    }
+
+    { x0 x1 x2 x_bias } -> { w00 }
+    { x0 x1 x2 x_bias } -> { w02 }
+    { x0 x1 x2 x_bias } -> { w0_bias } [style=invis]
+    
+    x0 -> w01 [xlabel=<* W<sub>(0, 1, 0)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4] 
+    x1 -> w01 [xlabel=<* W<sub>(0, 1, 1)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4] 
+    x2 -> w01 [xlabel=<* W<sub>(0, 1, 2)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4] 
+    x_bias -> w01 [xlabel=<* W<sub>(0, 1, 3)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4] 
+
+    // Between W0 and W1:
+    { w00 } -> { w10 w11 w12 }
+    w02 -> w10 
+    w02 -> w11 
+    w01 -> w10 [xlabel=<Z<sub>(0, 1)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4]
+    w01 -> w11 [xlabel=<Z<sub>(0, 1)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4]
+    w01 -> w12 [xlabel=<Z<sub>(0, 1)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4]
+    { w00 w01 w02 w0_bias } -> { w1_bias } [style=invis]
+    w02 -> w12 [xlabel=<Z<sub>(0, 2)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4]
+    w0_bias -> {w10 w11}
+    w0_bias -> w12 [xlabel=<Z<sub>(0, 3)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4]
+    
+    // Between W1 and W2:
+    { w10 w11 w12 w1_bias} -> { w20 w21 w22 }
+    
+    // Between W2 and Output layer:
+    { w10 w11 w12 w1_bias} -> { w2_bias } -> { o0 o1 o2 o3 } [style=invis]
+
+    
+    w20 -> o0 [lhead=cluster_output_layer, color=dodgerblue3, xlabel=<Z<sub>(L, 0)</sub>>, fontcolor=dodgerblue4]
+    w20 -> {o1 o2}[style = invis]
+
+    w21 -> o1 [lhead=cluster_output_layer, color=dodgerblue3, xlabel=<Z<sub>(L, 1)</sub>>, fontcolor=dodgerblue4]
+    w21 -> {o0 o2}[style = invis]
+
+    w22 -> o2 [lhead=cluster_output_layer, color=dodgerblue3, xlabel=<Z<sub>(L, 2)</sub>>, fontcolor=dodgerblue4]
+    w22 -> {o0 o1}[style = invis]
+
+    o1 -> e1 [color = black, ltail=cluster_output_layer, xlabel=<O (output)>]
+
+    {
+        rank=same;
+        x_bias
+        -> 
+        x2
+        -> 
+        x1 
+        -> 
+        x0 
+        [style=invis]
+    }
+
+    {
+        rank=same;
+        w0_bias 
+        -> 
+        w02 
+        -> 
+        w01 
+        -> 
+        w00
+        [style=invis]
+    }
+
+    {
+        rank=same;
+        w1_bias 
+        -> 
+        w12 
+        -> 
+        w11 
+        -> 
+        w10
+        [style=invis]
+    }
+
+
+    {
+        rank=same; 
+        w2_bias 
+        ->
+        w22 [style=invis]
+         
+        w21 
+        -> 
+        w20
+        [style=invis]
+    }
+
+     {
+        rank=same;
+        o3 -> o2 -> o1 -> o0
+        [style=invis]
+    }
+}
