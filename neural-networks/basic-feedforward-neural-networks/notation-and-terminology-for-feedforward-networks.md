@@ -61,7 +61,7 @@ For that reason, I use the following terminology and notation:
 Take a look at the network in Fig 1. We can see that: 
 - L = 3 i.e. there are three (hidden) layers.
 - The input to the network, $$D_i$$, is a vector of with 3 features. When combined with a bias unit, it becomes $$X_0$$, as it is fed into each neuron of the first hidden layer $$W_0$$.
-    - Each neuron owns a vector of weights which it uses to produce the output. In the figure above, we look at the second neuron of $$W_0$$, i.e. $$W_{(0, 1)}$$, with weight vector $$[ \begin{matrix} W_{(0, 1, 0)} & W_{(0, 1, 1)} & W_{(0, 1, 2)} & W_{(0, 1, 3)} \end{matrix}]$$. The neuron "owns" these weights; it can be considered part of its definition.
+    - Each neuron owns a vector of weights which it uses to produce the output. In the figure above, we look at the second neuron of $$W_0$$, i.e. $$W_{(0, 1)}$$, with weight vector $$[ \begin{matrix} W_{(0, 1, 0)} & W_{(0, 1, 1)} & W_{(0, 1, 2)} & W_{(0, 1, 3)} \end{matrix}]$$. The neuron "owns" these weights; they can be considered part of its definition.
     - This weight vector is multiplied by the corresponding input vector to the layer. Here, it is $$X_0 = [ \begin{matrix} X_{(0,0)} & X_{(0,1)} & X_{(0,2)} & X_{(0,3)} \end{matrix}]$$.
     - For a neuron $$W_{(0,1)}$$, the affine function computes $$A_{(0,1)} = X_0 \cdot W_{(0,1)}$$ (the bias is already included). This is a scalar for a particular neuron.
     - Each neuron in the above figure outputs a single, scalar value. For our selected neuron, it is $$Z_{(0,1)} = activation(A_{(0,1)})$$, where the activation function might be sigmoid, ReLU, tanh, etc.

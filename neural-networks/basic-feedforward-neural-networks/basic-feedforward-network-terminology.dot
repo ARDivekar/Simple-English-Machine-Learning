@@ -1,7 +1,7 @@
 digraph NeuralNetwork {
 
     rankdir=LR;
-    ranksep=1.65;
+    ranksep=1.5;
     newrank=true;
     splines=line;
     nodesep=0.5;
@@ -18,7 +18,7 @@ digraph NeuralNetwork {
     compound=true;
     
     subgraph cluster_X {
-        label=<D<sub>i</sub> = X<sub>0</sub>>;
+        label=<X<sub>0</sub> = [D<sub>i</sub>  , bias]>;
         node [style=solid, color=grey65, shape=square, fontsize=12];
         // Nodes:
         x0 [label=<X<sub>(0, 0)</sub>>]
@@ -114,7 +114,7 @@ digraph NeuralNetwork {
     { w00 w01 w02 w0_bias } -> { w1_bias } [style=invis]
     w02 -> w12 [xlabel=<Z<sub>(0, 2)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4]
     w0_bias -> {w10 w11}
-    w0_bias -> w12 [xlabel=<Z<sub>(0, 3)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4]
+    w0_bias -> w12 [xlabel=<+1        >, color=dodgerblue3, fontcolor=dodgerblue4]
     
     // Between W1 and W2:
     { w10 w11 w12 w1_bias} -> { w20 w21 w22 }
