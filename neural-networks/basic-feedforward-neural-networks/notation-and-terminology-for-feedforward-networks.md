@@ -60,11 +60,105 @@ For that reason, I use the following terminology and notation:
 
 Take a look at the network in Fig 1. We can see that: 
 - L = 3 i.e. there are three (hidden) layers.
-- The input to the network, $$D_i$$, is a vector of with 3 features. When combined with a bias unit, it becomes $$X_0$$, as it is fed into each neuron of the first hidden layer $$W_0$$.
+- The input to the network, $$D_i$$, is a vector with 3 features. When combined with a bias unit, it becomes $$X_0$$, as it is fed into each neuron of the first hidden layer $$W_0$$.
     - Each neuron owns a vector of weights which it uses to produce the output. In the figure above, we look at the second neuron of $$W_0$$, i.e. $$W_{(0, 1)}$$, with weight vector $$[ \begin{matrix} W_{(0, 1, 0)} & W_{(0, 1, 1)} & W_{(0, 1, 2)} & W_{(0, 1, 3)} \end{matrix}]$$. The neuron "owns" these weights; they can be considered part of its definition.
     - This weight vector is multiplied by the corresponding input vector to the layer. Here, it is $$X_0 = [ \begin{matrix} X_{(0,0)} & X_{(0,1)} & X_{(0,2)} & X_{(0,3)} \end{matrix}]$$.
     - For a neuron $$W_{(0,1)}$$, the affine function computes $$A_{(0,1)} = X_0 \cdot W_{(0,1)}$$ (the bias is already included). This is a scalar for a particular neuron.
     - Each neuron in the above figure outputs a single, scalar value. For our selected neuron, it is $$Z_{(0,1)} = activation(A_{(0,1)})$$, where the activation function might be sigmoid, ReLU, tanh, etc.
     - The vector of outputs from a particular layer is combined with a bias and becomes the next layer's input. In our example, it is $$ X_{1} = [ \begin{matrix} Z_{0}, & bias ] \end{matrix}  = [ \begin{matrix} Z_{(0,0)} & Z_{(0,1)} & Z_{(0,2)} & bias \end{matrix} ] $$.
-- Same goes for layers $$W_1, W_2, $$ etc.
+- Same goes for layers $$W_1, W_2, $$ etc. 
 - The final layer $$W_{L-1}$$ calculates and propagates $$Z_{L-1}$$ to the output layer. The output layer does **not** take a bias unit as input.
+
+
+
+## Vectorized feed-forward:
+
+- Each layer in a basic feedforward network can be represented by a matrix.
+    - In the example above, $$W_0$$ has 3 neurons, each of which takes 4 inputs, and thus we can represent it as a $$4 \times 3$$ matrix, where each column is a neuron. The final row of each layer is the weights corresponding to the bias of the input $$X_0$$. E.g.
+
+        $$ W_0 =
+            \left[\begin{array}{cccc}
+                0.3073 & -3.31913 & -2.455  \\
+                -0.121 & -2.149 &  0.041 \\
+                -4.2342 & 5.6798 &  0.6527 \\
+                -3.6295 & 12.88588 & -0.499
+            \end{array}\right]
+        $$
+
+    - The input (row) vector $$X_0$$, which will have 4 elements. The final one will be the bias value, +1.
+        $$ X_0 =
+            \left[\begin{array}{cccc}
+                3 & -5 & 12  +1
+            \end{array}\right]
+        $$
+
+    - We compute the vector-matrix multiplication of these two to get the affine of the first layer, i.e. 
+        $$
+            A_0 = X_0 \times W_0 \\
+            = 
+            \left[\begin{array}{ccc}
+                -52.913 &  81.83109 & -0.2366 
+            \end{array}\right]
+        $$
+    
+    - To compute the output of the first layer, we apply the activation function to each element of the affine vector:
+        $$
+            Z_0 = sig(A_0) 
+            \\
+            = 
+            \left[\begin{array}{ccc}
+                sig(-52.913) & sig(81.83109) & sig(-0.2366)
+            \end{array}\right] 
+            \\
+            \approx \left[\begin{array}{ccc}
+                0 & 1 & 0.44112
+            \end{array}\right]
+        $$
+
+        - Here, we have chosen the sigmoid activation function, i.e. 
+            $$
+                sigmoid(x) = sig(x) = \frac{1}{1+e^{-x}}
+            $$
+        
+    - We're not done yet! $$Z_0$$ is the output from the layer $$W_0$$, but to get $$X_1$$, the input to layer $$W_1$$, we must concatenate a bias value to the end of $$Z_0$$.
+        $$
+            X_1
+            = \left[\begin{array}{cc}
+                Z_0, & +1
+            \end{array}\right]
+            \\
+            = \left[\begin{array}{cccc}
+                -52.913 &  81.83109 & -0.2366 & +1
+            \end{array}\right]
+        $$
+
+    - We pass this as the input to layer $$W_1$$, which is also a $$4 \times 3$$ matrix, and similarly obtain $$Z_1$$ and $$X_2$$.
+
+        $$
+            X_2
+            = \left[\begin{array}{cc}
+                Z_1, & +1
+            \end{array}\right]
+            \\
+            = \left[\begin{array}{cc}
+                activation(X_1 \times W_1), & +1
+            \end{array}\right]
+        $$
+    
+    - Similarly, we compute all the way until we get $$Z_{L-1}$$. In the example above, that is $$Z_2$$.
+        $$
+            Z_2
+            \\ 
+            = 
+            \left[\begin{array}{cc}
+                activation(\left[\begin{array}{cc}
+                    activation(\left[\begin{array}{cc} 
+                        activation(X_0 \times W_0), & +1 
+                    \end{array}\right] 
+                    \times W_1), & +1
+                \end{array}\right]
+                \times W_2)
+            \end{array}\right]
+        $$
+
+    - The output of the final layer, $$Z_{L-1}$$, does **not** have a bias unit concatenated to it when we feed it to the output layer.
