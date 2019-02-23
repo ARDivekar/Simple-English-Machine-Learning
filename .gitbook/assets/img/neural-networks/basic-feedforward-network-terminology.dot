@@ -4,7 +4,7 @@ digraph NeuralNetwork {
     ranksep=1.5;
     newrank=true;
     splines=line;
-    nodesep=0.5;
+    nodesep=0.65;
     forcelabels=true;
     node[
         // label="",
@@ -14,49 +14,50 @@ digraph NeuralNetwork {
         fontsize=11, 
         shape=circle
     ];
-    edge[color=gray90, arrowsize=0.5, fontsize = 10];
+    edge[color=gray90, arrowsize=0.5, fontsize = 12];
     compound=true;
     
     subgraph cluster_X {
-        label=<X<sub>0</sub> = [D<sub>i</sub>  , bias]>;
-        node [style=solid, color=grey65, shape=square, fontsize=12];
+        label=<<br/>X<font point-size="8"><sub>0</sub></font>  =  [D<font point-size="12"><sub>i</sub></font> <font point-size="16">, </font> bias]>;
+        color=grey65;
+        node [style=solid, color=grey25, shape=square, fontsize=12];
         // Nodes:
-        x0 [label=<X<sub>(0, 0)</sub>>]
-        x1 [label=<X<sub>(0, 1)</sub>>]
-        x2 [label=<X<sub>(0, 2)</sub>>]
-        x_bias [label="+1", color=grey65, shape=circle]
+        x0 [label=<X<font point-size="8"><sub>(0, 0)</sub></font>>]
+        x1 [label=<X<font point-size="8"><sub>(0, 1)</sub></font>>]
+        x2 [label=<X<font point-size="8"><sub>(0, 2)</sub></font>>]
+        x_bias [label="+1", color=grey25, shape=circle]
     }
 
     subgraph cluster_W_0 {
-		label = <W<sub>0</sub>>;
-		color=grey65;
+		label = <W<font point-size="8"><sub>0</sub></font>>;
+		color=black;
         // Nodes:
 		node [style=solid, color=red2];
-        w00 [label=<W<sub>(0, 0)</sub>>];
-		w01 [label=<W<sub>(0, 1)</sub>>, color=dodgerblue3];
-        w02 [label=<W<sub>(0, 2)</sub>>];
-        w0_bias [label="+1", color=grey65]
+        w00 [label=<W<font point-size="8"><sub>(0, 0)</sub></font>>];
+		w01 [label=<W<font point-size="8"><sub>(0, 1)</sub></font>>, color=dodgerblue3];
+        w02 [label=<W<font point-size="8"><sub>(0, 2)</sub></font>>];
+        w0_bias [label="+1", color=grey25]
 	}
 
     subgraph cluster_W_1 {
-		label = <W<sub>1</sub>>;
-		color=grey65;
+		label = <W<font point-size="8"><sub>1</sub></font>>;
+		color=black;
         // Nodes:
 		node [style=solid, color=red2];
-        w10 [label=<W<sub>(1, 0)</sub>>];
-		w11 [label=<W<sub>(1, 1)</sub>>];
-        w12 [label=<W<sub>(1, 2)</sub>>];
-        w1_bias [label="+1", color=grey65]
+        w10 [label=<W<font point-size="8"><sub>(1, 0)</sub></font>>];
+		w11 [label=<W<font point-size="8"><sub>(1, 1)</sub></font>>];
+        w12 [label=<W<font point-size="8"><sub>(1, 2)</sub></font>>];
+        w1_bias [label="+1", color=grey25]
 	}
 
     subgraph cluster_W_2 {
-		label = <W<sub>2</sub>   =  W<sub>L-1</sub>>;
-		color=grey65;
+		label = <W<font point-size="8"><sub>2</sub></font>   =  W<font point-size="8"><sub>L-1</sub></font>>;
+		color=black;
         // Nodes:
 		node [style=solid, color=red2];
-        w20 [label=<W<sub>(2, 0)</sub>>];
-		w21 [label=<W<sub>(2, 1)</sub>>];
-        w22 [label=<W<sub>(2, 2)</sub>>];
+        w20 [label=<W<font point-size="8"><sub>(2, 0)</sub></font>>];
+		w21 [label=<W<font point-size="8"><sub>(2, 1)</sub></font>>];
+        w22 [label=<W<font point-size="8"><sub>(2, 2)</sub></font>>];
         // w2_bias [label="", style=invis]
 	}
 
@@ -83,10 +84,10 @@ digraph NeuralNetwork {
         rank=same;
         color=white;
         label="";
-        node [style=solid, color=black, shape=square];
+        node [style=solid, color=grey25, shape=square];
         e0 [style=invis]
         e1 [label="Error\n function"]
-        y [label=<Y<sub>i</sub>>]
+        y [label=<Y<font point-size="8"><sub>i</sub></font>>, color=grey25]
         e3 [style=invis]
         {
             e3 -> y [style=invis]
@@ -99,22 +100,22 @@ digraph NeuralNetwork {
     { x0 x1 x2 x_bias } -> { w02 }
     { x0 x1 x2 x_bias } -> { w0_bias } [style=invis]
     
-    x0 -> w01 [xlabel=<* W<sub>(0, 1, 0)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4] 
-    x1 -> w01 [xlabel=<* W<sub>(0, 1, 1)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4] 
-    x2 -> w01 [xlabel=<* W<sub>(0, 1, 2)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4] 
-    x_bias -> w01 [xlabel=<* W<sub>(0, 1, 3)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4] 
+    x0 -> w01 [xlabel=<* W<font point-size="8"><sub>(0, 1, 0)</sub></font>>, color=dodgerblue3, fontcolor=dodgerblue4] 
+    x1 -> w01 [xlabel=<* W<font point-size="8"><sub>(0, 1, 1)</sub></font>>, color=dodgerblue3, fontcolor=dodgerblue4] 
+    x2 -> w01 [xlabel=<* W<font point-size="8"><sub>(0, 1, 2)</sub></font>>, color=dodgerblue3, fontcolor=dodgerblue4] 
+    x_bias -> w01 [xlabel=<<br/>* W<font point-size="8"><sub>(0, 1, 3)</sub></font>>, color=dodgerblue3, fontcolor=dodgerblue4] 
 
     // Between W0 and W1:
     { w00 } -> { w10 w11 w12 }
     w02 -> w10 
     w02 -> w11 
-    w01 -> w10 [xlabel=<Z<sub>(0, 1)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4]
-    w01 -> w11 [xlabel=<Z<sub>(0, 1)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4]
-    w01 -> w12 [xlabel=<Z<sub>(0, 1)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4]
+    w01 -> w10 [xlabel=<Z<font point-size="8"><sub>(0, 1)</sub></font>>, color=dodgerblue3, fontcolor=dodgerblue4]
+    w01 -> w11 [xlabel=<Z<font point-size="8"><sub>(0, 1)</sub></font>>, color=dodgerblue3, fontcolor=dodgerblue4]
+    w01 -> w12 [xlabel=<Z<font point-size="8"><sub>(0, 1)</sub></font>>, color=dodgerblue3, fontcolor=dodgerblue4]
     { w00 w01 w02 w0_bias } -> { w1_bias } [style=invis]
-    w02 -> w12 [xlabel=<Z<sub>(0, 2)</sub>>, color=dodgerblue3, fontcolor=dodgerblue4]
+    w02 -> w12 [xlabel=<Z<font point-size="8"><sub>(0, 2)</sub></font>>, color=dodgerblue3, fontcolor=dodgerblue4]
     w0_bias -> {w10 w11}
-    w0_bias -> w12 [xlabel=<+1        >, color=dodgerblue3, fontcolor=dodgerblue4]
+    w0_bias -> w12 [xlabel=<<br/>+1>, color=dodgerblue3, fontcolor=dodgerblue4]
     
     // Between W1 and W2:
     { w10 w11 w12 w1_bias} -> { w20 w21 w22 }
@@ -123,16 +124,16 @@ digraph NeuralNetwork {
     { w10 w11 w12 w1_bias} -> { w2_bias } -> { o0 o1 o2 o3 } [style=invis]
 
     
-    w20 -> o0 [lhead=cluster_output_layer, color=dodgerblue3, xlabel=<Z<sub>(L, 0)</sub>>, fontcolor=dodgerblue4]
+    w20 -> o0 [lhead=cluster_output_layer, color=dodgerblue3, xlabel=<Z<font point-size="8"><sub>(L-1, 0)</sub></font>>, fontcolor=dodgerblue4]
     w20 -> {o1 o2}[style = invis]
 
-    w21 -> o1 [lhead=cluster_output_layer, color=dodgerblue3, xlabel=<Z<sub>(L, 1)</sub>>, fontcolor=dodgerblue4]
+    w21 -> o1 [lhead=cluster_output_layer, color=dodgerblue3, xlabel=<Z<font point-size="8"><sub>(L-1, 1)</sub></font>>, fontcolor=dodgerblue4]
     w21 -> {o0 o2}[style = invis]
 
-    w22 -> o2 [lhead=cluster_output_layer, color=dodgerblue3, xlabel=<Z<sub>(L, 2)</sub>>, fontcolor=dodgerblue4]
+    w22 -> o2 [lhead=cluster_output_layer, color=dodgerblue3, xlabel=<Z<font point-size="8"><sub>(L-1, 2)</sub></font>>, fontcolor=dodgerblue4, ]
     w22 -> {o0 o1}[style = invis]
 
-    o1 -> e1 [color = black, ltail=cluster_output_layer, xlabel=<O (output)>]
+    o1 -> e1 [color = black, ltail=cluster_output_layer, xlabel="O"]
 
     {
         rank=same;
