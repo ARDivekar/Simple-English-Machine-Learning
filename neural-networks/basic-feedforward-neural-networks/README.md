@@ -1,2 +1,0 @@
-# Basic Feedforward Neural Networks
-
