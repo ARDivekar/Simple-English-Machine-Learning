@@ -2,3 +2,6 @@ node_modules/*
 _book/*
 npm-debug.log
 **/.ipynb_checkpoints/*
+*.aux
+*.log
+.gitbook/assets/img/**/*.pdf

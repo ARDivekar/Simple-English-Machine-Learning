@@ -11,13 +11,14 @@
 
 ## Math
 
-* [Statistics](math/statistics/README.md)
-    * [Bayesian Statistics](math/statistics/bayesian-statistics.md)
+* Calculus
+    * Partial Derivatives
+        * [Chain rule and Multivariable Chain rule](math/calculus/partial-derivatives/chain-rule-and-multivariable-chain-rule.md)
 
 ## Neural Networks
 
-* [Basic Feedforward Neural Networks](neural-networks/basic-feedforward-neural-networks/README.md)
+* [Computational graphs and gradient flows](neural-networks/computational-graphs.md)
+* Basic Feedforward Neural Networks
     * [Structure of a Feedforward Neuron](neural-networks/basic-feedforward-neural-networks/structure-of-a-feedforward-neuron.md)
     * [Notation and terminology for feedforward networks](neural-networks/basic-feedforward-neural-networks/notation-and-terminology-for-feedforward-networks.md)
-    * [Neural Computational graphs](neural-networks/basic-feedforward-neural-networks/neural-computational-graphs.md)
 

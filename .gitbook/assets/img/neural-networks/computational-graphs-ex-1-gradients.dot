@@ -1,0 +1,52 @@
+digraph ComputationalGraph1 {
+    /*
+        References for this graph:
+        - Drawing backwards edges: https://stackoverflow.com/a/5426192/4900327
+        
+        - Using HTML symbols in Graphviz: https://www.graphviz.org/doc/info/shapes.html#htmlty (search for "HTML")
+        
+        - The partial derivative HTML element (&part;): https://en.wikipedia.org/wiki/∂
+        - Fractions in HTML: http://changelog.ca/log/2008/07/01/writing_fractions_in_html
+        
+        - Another way to write partial derivatives in Graphviz using UTF-8 symbols (not used in this graph): https://stackoverflow.com/a/30059591/4900327
+    */
+
+    rankdir=LR;
+    ranksep=0.5;
+    newrank=true;
+    splines=line;
+    nodesep=0.5;
+    forcelabels=true;
+    node[
+        // label="",
+        fixedsize=true, 
+        width=0.75,
+        height=0.75,
+        fontsize=12, 
+        shape=circle
+    ];
+    edge[color=black, arrowsize=0.5, fontsize = 15, dir=back];
+
+    b [label="b = \n5 - 3a"]
+    c [label="c = \n2b + 3"]
+    d [label="d = \n5b + 6"]
+    e [label=<e =<br/>7c + d<font point-size="8"><sup>2</sup></font>>]
+    f [label="f = 2e"]
+    g [label="g = \n3f - o"]
+    
+    a -> b [label=<<sup>&part;b</sup>&frasl;<sub>&part;a</sub><br/><br/>>]
+
+    b -> c [label=<<sup>&part;c</sup>&frasl;<sub>&part;b</sub><br/><br/>>]
+
+    b -> d [label=<<br/><br/><br/><sup>&part;d</sup>&frasl;<sub>&part;b</sub>>]
+
+    c -> e [label=<<sup>&part;e</sup>&frasl;<sub>&part;c</sub><br/>>]
+
+    d -> e [label=<<br/><br/><br/><sup>&part;e</sup>&frasl;<sub>&part;d</sub>>]
+
+    e -> f [label=<<sup>&part;f</sup>&frasl;<sub>&part;e</sub><br/><br/>>]
+
+    f -> g [label=<<br/><br/><br/><sup>&part;g</sup>&frasl;<sub>&part;f</sub>>]
+
+    o -> g [label=<<sup>&part;g</sup>&frasl;<sub>&part;o</sub><br/>>]
+}

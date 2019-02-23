@@ -53,7 +53,7 @@ For that reason, I use the following terminology and notation:
     - It takes as input $$O$$, the output of the network when fed $$D_i$$, and $$Y_i$$, the actual output value. 
     - The error value is a scalar.
 
-![Fig 1. Basic feedforward neural network](../../.gitbook/assets/basic-feed-forward-neural-network.png)
+![Fig 1. Basic feedforward neural network](../../.gitbook/assets/img/neural-networks/basic-feed-forward-neural-network.png)
 
 
 ## By example

@@ -4,7 +4,7 @@ A feedforward neuron is what comes to most people's minds when they think of neu
 
 This neuron is a vector of weights. It takes as input a vector from the previous layer/input layer. It computes the dot product of these two along with a linear bias (called an affine transform) and then outputs a scalar value. The value it outputs is then transformed by an activation function into another scalar value, which is passed to the next layer/network output.
 
-![Source: https://explained.ai/matrix-calculus/index.html](../../.gitbook/assets/image.png)
+![Source: https://explained.ai/matrix-calculus/index.html](../../.gitbook/assets/img/neural-networks/neuron.png)
 
 Let's do this mathematically. The affine transform is:
 
