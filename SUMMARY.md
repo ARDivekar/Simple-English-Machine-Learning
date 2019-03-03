@@ -2,7 +2,7 @@
 
 * [About Simple English Machine Learning](README.md)
 
-## Meta (Gitbook setup)
+## Meta \(Gitbook setup\)
 
 * [Building and watching this Gitbook](meta-gitbook-setup/gitbook.md)
 * [LaTeX](meta-gitbook-setup/latex.md)
@@ -11,15 +11,15 @@
 
 ## Math
 
-* Calculus
-    * Partial Derivatives
-        * [Chain rule and Multivariable Chain rule](math/calculus/partial-derivatives/chain-rule-and-multivariable-chain-rule.md)
+* [Calculus](math/calculus/README.md)
+  * [Partial Derivatives](math/calculus/partial-derivatives/README.md)
+    * [Chain rule and Multivariable Chain rule](math/calculus/partial-derivatives/chain-rule-and-multivariable-chain-rule.md)
 
 ## Neural Networks
 
 * [Computational graphs and gradient flows](neural-networks/computational-graphs.md)
-* Basic Feedforward Neural Networks
-    * [Structure of a Feedforward Neuron](neural-networks/basic-feedforward-neural-networks/structure-of-a-feedforward-neuron.md)
-    * [Notation and terminology for feedforward networks](neural-networks/basic-feedforward-neural-networks/notation-and-terminology-for-feedforward-networks.md)
-    * [Feedforward Process](neural-networks/basic-feedforward-neural-networks/feedforward-process.md)
+* [Basic Feedforward Neural Networks](neural-networks/basic-feedforward-neural-networks/README.md)
+  * [Structure of a Feedforward Neuron](neural-networks/basic-feedforward-neural-networks/structure-of-a-feedforward-neuron.md)
+  * [Notation and terminology for feedforward networks](neural-networks/basic-feedforward-neural-networks/notation-and-terminology-for-feedforward-networks.md)
+  * [Feedforward Process](neural-networks/basic-feedforward-neural-networks/feedforward-process.md)
 
