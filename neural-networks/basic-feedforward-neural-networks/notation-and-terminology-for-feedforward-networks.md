@@ -6,80 +6,128 @@ description: Notation and terminology for basic feedforward networks
 
 ## Notation and terminology
 
-When you deal with feedforward networks, it is easy to lose track of which exact neuron or layer is being referred to at a particular point in time.
-
-For that reason, I use the terminology and notation described in the sections below.
+When you deal with feedforward networks, it is easy to lose track of which exact neuron or layer is being referred to at a particular point in time. For this reason, I use the terminology and notation described in the sections below, which is hopefully unambiguous.
 
 ### Indexing
 
-I will use zero-indexing everywhere, as that makes things easier to translate into code.
-
-### Samples
-
-During feedforward, we iteratively feed the network samples $$D_i$$ drawn randomly from the dataset $$D$$.
-
-### Hidden layers
-
-The network comprises of $$L$$ _hidden layers_: $$W_0, W_1, \dots, W_i, \dots, W_{L-1}$$.
-
-* The main property of a hidden layer is that it has trainable weights attached to it: each neuron "owns" the weights that are fed into the affine function while calculating its output.
-* The input vector/tensor to the network is not considered a "hidden layer". Neither is the output vector/tensor. The two layers are both ephemeral; they have no trainable weights attached to them.
-
-### Layer inputs
-
-$$X_i$$ or $$x_i$$ \(used interchangeably\) are inputs to a layer $$W_i$$.
-
-* The input to the first layer is $$X_0$$. This is the sample $$D_i$$ drawn from the dataset.
-* Inputs to all other layers are fed from the previous layers \(or in the case of recurrent networks, the same layer at the previous time step\).
-* Each of inputs may be vectors/tensors, depending on the problem.
-
-### Layer outputs
-
-The output from the $$i^{th}$$ neuron of the $$j^{th}$$ layer is $$Z_{(i,j)}$$ or $$z_{(i,j)}$$ \(used interchangeably\).
-
-* This output is obtained after we compute the affine function and pass that value through an activation function.
-  * When required, we will denote the value of just the affine computation of a particular neuron as $$A_{(i,j)}$$ or $$a_{(i,j)}$$. Other sources might refer to this as $$net_{(i,j)}$$.
-* Combining the output of all neurons in layer $$i$$ into a vector/tensor of outputs, we get $$Z_i$$ or $$z_i$$. This will be fed to the next layer.
-* Since we are dealing with purely feed-forward networks here, we have $$X_{i+1} == [\begin{matrix} Z_{i}, & bias \end{matrix}]$$, i.e. the input to a particular layer is _only_ the output of the previous layer, with an appended bias value \(which is usually +1\). 
-  * In other kinds of networks \(e.g. recurrent\), the input to a layer might also include the layer's own output from a previous time step.
-
-### Output layer of the network
-
-After the final hidden layer, there is another layer which calculates the output/prediction of the entire network. This shall be called the "output" layer, similar to how the input of the network is called the "input" layer.
-
-* This is the layer which takes as input $$Z_{L-1}$$ \(the output of the final hidden layer\) and calculates the output/prediction of the network. 
-* What this layer does is problem-specific E.g. for multi-class classification, this layer might be the softmax operation.
-* This layer does not "own" any weights. It is a "virtual" or ephemeral layer, like the input layer.
-* The output from this layer \(and thus the output/prediction of the network\) is denoted as $$O$$. This might be a scalar, vector, or tensor, depending on the problem.
-* $$Z_{L-1}$$, the output of the final hidden layer, must be transformed to create the network output $$O$$.
+I will use zero-indexing everywhere, as it makes things easier to translate into code.
 
 ### Dataset and batches
 
-While training, we provide a dataset $$D$$. The network's job is to fit the dataset well.
+While training the network weights, we provide a dataset $$D$$. 
 
-* We will assume this dataset has $$N$$ samples.
-* Each sample in this dataset is an input-output pair, denoted \($$D_i$$, $$Y_i$$\) or \($$d_i$$, $$y_i$$\)
-  * $$D_i$$ \(the input\) might be a vector/tensor.
-    * We use this notation just to clarify the context in which different samples are being discussed. 
-  * E.g. when talking about how a given example propagates through the network, $$D_i$$ becomes $$X_0$$, i.e. the input to the first layer, $$W_0$$. The output of $W\_0$ is the vector/tensor $$Z_0$$, which becomes $$X_1$$ the input to layer $$W_1$$.
-  * $$Y_i$$ is usally a single value, but this depdends on the problem.
-    * E.g. for multi-label classification, $$Y_i$$ might be a vector of ones and zeros, representing which classes the input $$D_i$$ belongs to.
-    * The dimensions of $$Y_i$$ will be the same as $$O$$, the output of the network when being input $$D_i$$. Together, $$Y_i$$ at $$O$$ will be fed into the error function to calculate the error value.
-* If we are going to split the dataset into mini-batches for training \(i.e. _batched gradient descent_\), $$B$$ will denote the batch size.
-  * Generally $$B \lt\lt N$$, e.g. we have a dataset of 1 million images, but we train in batches of 128 at a time.
-  * When we run over the entire dataset once \(i.e. we have trained using $$\frac{N}{B}$$ batches\), it is called an _epoch_.
-* If we have a multi-class classification problem \(e.g. identifying if a given photo is of a cat, dog, giraffe, zebra, orangutan, etc.\), we assume that there are $$K$$ such output classes. 
-  * You might also hear that there are $$K$$ "target classes" or "output categories".
-  * The output layer should be structured to narrow down to one/multiple of these $$K$$ classes.
+The network's job is to fit the dataset well and reduce the error on training samples.
 
-### Error function
+- The dataset has $$N = |D|$$ samples: $$D^{(0)} , D^{(1)} , D^{(2)} , \dots , D^{(i)} , \dots , D^{(N-1)}$$. The parenthesis in the superscript is to help us differentiate this from the "$$i^{th}$$ power" notation.
+- Each sample in this dataset is an input-output pair, denoted ($$X^{(i)}$$, $$Y^{(i)}$$) or \($$x^(i)$$, $$y^(i)$$\)
+  - $$X^{(i)}$$ (the $$i^{th}$$ input) is a vector/tensor.
+  - $$Y^{(i)}$$ (the $$i^{th}$$ output or _target_) is usually a scalar value.
+    - For classification problems, $$Y_{(i)}$$ will belong to one (or more) of $$K$$ _classes_ or _labels_. E.g. for single-label image classification, $$Y^{(7)} = Cat$$ means that the $$8^{th}$$ image is actually a cat. Whereas if our problem is multi-label classification, we might have $$Y^{(31)} = \begin{matrix} \{Cat, & Dog, & Horse\} \end{matrix}$$, meaning our sample actually contains a cat, dog and a horse.
+    - An important representation of each target variable is _one-hot encoding_. 
+      - In this representation, we assign each of the $$K$$ possible classes to index of a vector, and every target thus becomes a vector of ones and zeros, depending on whether that class is present in the sample or not.
+      - E.g. Suppose we have a multi-label image classification problem, where we have the classes $$\begin{matrix} \{Bear, & Cat, & Dog, & Goose, & Horse, & Mouse, & Zebra\} \end{matrix}$$ $$(K = 7)$$. Each class is assigned its respective index in this array, and the above two targets become:
+        $$
+          Y^{(7)} = Cat 
+          = \left[ \begin{matrix} 
+            0 &
+            1 &
+            0 &
+            0 &
+            0 &
+            0 &
+            0 
+          \end{matrix} \right]
+          \\
+          Y^{(31)} = \begin{matrix} \{Cat, & Dog, & Horse\} \end{matrix}
+          = \left[ \begin{matrix} 
+            0 & 
+            1 & 
+            1 & 
+            0 & 
+            1 & 
+            0 & 
+            0 
+          \end{matrix} \right]
+        $$  
 
-During training, we compute the value of the _Error function_. This is logically after the Output layer.
+- If we are going to split the dataset into _batches_ for training (as in the case of _batched gradient descent_), we will let $$B$$ will denote the batch size.
+  - Generally $$B \lt\lt N$$, e.g. we have a dataset of 1 million images, but we train in batches of 128 at a time.
+  - Every time we train over the entire dataset \(i.e. we train using $$\frac{N}{B}$$ batches\), it is called an _epoch_.
+  - **Note:** the network performs the same computation over each sample in the batch. Thus, most network-level operations (prediction, feedforward, backpropagation, etc) can be run in parallel over a batch.
 
-* It takes as input $$O$$, the output of the network when fed $$D_i$$, and $$Y_i$$, the actual output value. 
-* The error value is always a scalar.
+
+### Network terminology
+
+#### Hidden layers
+
+- The network comprises of $$L$$ _hidden layers_: $$H_0 , H_1 , \dots , H_l, \dots , H_{L-1}$$.
+- Each layer is made up of _neurons_ which are the basic units of computation in a neural network.
+  - The $$l^{th}$$ layer will have $$|H_l|$$ neurons in it.
+  - The smallest possible network has just one hidden layer, with one neuron in it.
+- The main property of a hidden layer is that it has trainable _weights_ attached to it. We will denote these weights as $$W_0 , W_1 , \dots , W_l , \dots W_{L-1}$$.
+  - Each neuron in the layer is said to "own" the weights that are used to calculate the affine value and the neuron output.
+- **Note**: The input vector/tensor to the network is not considered a "hidden layer". Neither is the output vector/tensor. These two layers are both ephemeral; they have no trainable weights attached to them. The hidden layers are the only "solid" layers; if you had to export a network to disk for later use, you would only have to serialize the network structure, and weights owned by the hidden layers. 
+- **Note**: when we say "a layer" (versus "the input layer"), we mean a hidden layer.
+
+
+
+#### Layer inputs
+
+Remember: we draw samples from the dataset $$D$$ and feed them into network for training/prediction. Each sample is an input-output pair $$(X^{(i)}, Y^{(i)})$$.
+
+We might also feed the network batches of $$B > 1$$ samples at a time:
+$$
+  D^{(i , i+1, \dots , i+B-1)} = 
+  \left[ \begin{matrix}
+    (X^{(i)}, Y^{(i)}) &
+    (X^{(i+1)}, Y^{(i+1)}) &
+    \dots &
+    (X^{(i+B-1)}, Y^{(i+B-1)})
+  \end{matrix} \right]
+$$
+
+Regardless of whether we feed a single sample or a batch, we will use $$X_l$$ or $$x_l$$ to denote the inputs to a layer $$W_l$$. The context will tell us the dimensionality of the $$X_l$$.
+
+E.g. the input to the first layer is $$X_0 = D^{(i)}[0]$$ (I am indexing the pair here). For subsequent layers, it is $$X_1, X_2, \dots, X_{L-1}$$.
+
+
+#### Layer outputs
+
+Each neuron of a layer uses the inputs to the layer and its weights to compute the affine function, which it then passes through an _activation function_ to create the neuron output.
+  - When required, we will denote the value of just the affine computation of a particular neuron as $$A_{(i,j)}$$ or $$a_{(i,j)}$$. Other sources might refer to this as $$net_{(i,j)}$$.
+We will denote the output from the $$i^{th}$$ neuron of the $$l^{th}$$ layer is $$Z_{(l, i)}$$ or $$z_{(l, i)}$$.
+
+Grouping the outputs of all neurons in a layer, we get the _layer output_ $$Z_l$$. This is a vector.
+
+Note: 
+- For simple, dense networks, the output of each hidden layer (along with a bias value) becomes the input to the next later. 
+  i.e. $$X_{l+1} == [\begin{matrix} Z_{l}, & bias \end{matrix}]$$. The comma here means we concatenate the vector $$Z_l$$ with the scalar bias value (which is usually +1) to create a new vector which we feed into the subsequent layer.
+- In the case of recurrent networks, the input of each layer is not only the output of the previous layer in the network, but also the output of the _same_ layer in the previous time step (i.e. for the previous sample).
+
+
+
+#### Output (final) layer of the network
+
+The final hidden layer of a network is frequently referred to as the "output" layer of the network. 
+
+**This is very different from the network output!** The network's output layer _produces_ the network output, i.e. when we use the network to train/predict, the output layer tells us what the network predicts for a particular sample's input, $$X^{(i)}$$.
+
+We will denote the output layer as $$H_{L-1}$$ and the network output as $$O$$.
+
+The network's output must have the same dimensionality as the sample's target, $$Y^{(i)}$$. This is because both will be fed into the _Error function_ which computes how much they differ from each other.
+
+
+#### Error function
+
+The _Error function_, also called the _Loss function_ or _Cost function_, tells us how much the network's prediction differs from the sample's actual target. That is, it tells us how much $$O$$ and $$Y^{(i)}$$ differ.
+
+We denote the Error function by $$E(O, Y^{(i)})$$, or just $$E$$ for short.
+
+The Error function always outputs a **scalar**. The neural network training algorithm (gradient descent etc.) attempts to iteratively tweak the weights, so as to minimize the error value predicted for the training dataset.
 
 ![Fig 1. Basic feedforward neural network](../../.gitbook/assets/basic-feed-forward-neural-network.png)
+
+
 
 ### Example usage of notation and terminology
 
