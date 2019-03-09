@@ -18,8 +18,7 @@
 ## Neural Networks
 
 * [Computational graphs and gradient flows](neural-networks/computational-graphs.md)
-* [Basic Feedforward Neural Networks](neural-networks/basic-feedforward-neural-networks/README.md)
-  * [Structure of a Feedforward Neuron](neural-networks/basic-feedforward-neural-networks/structure-of-a-feedforward-neuron.md)
+* [Basic Neural Networks](neural-networks/basic-feedforward-neural-networks/README.md)
   * [Notation and terminology for feedforward networks](neural-networks/basic-feedforward-neural-networks/notation-and-terminology-for-feedforward-networks.md)
   * [Feedforward Process](neural-networks/basic-feedforward-neural-networks/feedforward-process.md)
 
