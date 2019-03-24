@@ -14,6 +14,9 @@
 * [Calculus](math/calculus/README.md)
   * [Partial Derivatives](math/calculus/partial-derivatives/README.md)
     * [Chain rule and Multivariable Chain rule](math/calculus/partial-derivatives/chain-rule-and-multivariable-chain-rule.md)
+* [Tensors](math/tensors/README.md)
+  * [Basics of Tensors](math/tensors/basics-of-tensors.md)
+  * [Rank of a Tensor](math/tensors/rank-of-a-tensor.md)
 
 ## Neural Networks
 
