@@ -6,7 +6,7 @@ description: >-
 
 # Computational graphs and gradient flows
 
-## and Prerequisites
+## Prerequisites
 
 To best understand this article, you should know about:
 
