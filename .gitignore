@@ -5,3 +5,5 @@ npm-debug.log
 *.aux
 *.log
 .gitbook/assets/img/**/*.pdf
+report*.json
+package-lock.json
