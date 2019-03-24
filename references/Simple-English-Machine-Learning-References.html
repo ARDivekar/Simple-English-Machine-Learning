@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>References for Simple English Machine Learning</title>
+    
+    <!-- Assets for DataTables with Semantic UI styling. Ref: https://datatables.net/examples/styling/semanticui.html -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css">
+    
+    <script type="text/javascript" src="./references.js"></script>
+    <script type="text/javascript" src="./referencesProcessor.js"></script>
+    
+    <style>
+        body {
+            padding: 2em;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            margin: 2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>References for Simple English Machine Learning</h1>
+    <br>
+    <table id="references" class="ui celled table"></table>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#references').DataTable(referencesDataTables);
+    } );
+    </script>
+</body>
+</html>
