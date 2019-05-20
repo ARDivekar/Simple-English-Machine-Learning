@@ -19,7 +19,7 @@
   * [Tensor indexing](math/tensors/tensor-indexing.md)
   * [Operations on tensors](math/tensors/operations-on-tensors/README.md)
     * [Basic tensor operations](math/tensors/operations-on-tensors/basic-tensor-operations.md)
-    * [Element broadcasting during tensor operations](math/tensors/operations-on-tensors/element-broadcasting-during-tensor.operations.md)
+    * [Element broadcasting during tensor operations](math/tensors/operations-on-tensors/element-broadcasting-during-tensor-operations.md)
     * [Tensor products](math/tensors/operations-on-tensors/tensor-products.md)
   * [Rank of a Tensor](math/tensors/rank-of-a-tensor.md)
 

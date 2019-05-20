@@ -1,2 +1,2 @@
-# Basic Feedforward Neural Networks
+# Basic Neural Networks
 

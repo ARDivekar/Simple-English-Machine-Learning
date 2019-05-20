@@ -79,7 +79,7 @@ However, as we move further towards the inputs of the graph, it gets more compli
   $$
 
 * Notice in the example above, when we are computing $$\frac{\partial g}{\partial d}$$ from scratch, the first few steps are essentially repeated from our calculation of $$\frac{\partial g}{\partial e}$$.
-  * To save effort, we can use the [chain-rule of partial derivatives](https://en.wikipedia.org/wiki/Chain_rule#Higher_dimensions) to re-use the value of $$\frac{\partial g}{\partial e}$$ which we had obtained, to calculate $$\frac{\partial g}{\partial d}$$. 
+  * To save effort, we can use the [chain-rule of partial derivatives](https://en.wikipedia.org/wiki/Chain_rule#Higher_dimensions) to re-use the value of $$\frac{\partial g}{\partial e}$$ which we had obtained, to calculate $$\frac{\partial g}{\partial d}$$.
 
     * By chain rule, we have $$\frac{\partial g}{\partial d} = \frac{\partial g}{\partial e}\cdot \frac{\partial e}{\partial d}$$. 
     * We had already calculated $$\frac{\partial g}{\partial e} = 6$$. 
@@ -93,7 +93,7 @@ However, as we move further towards the inputs of the graph, it gets more compli
 
     * Thus, $$\frac{\partial g}{\partial d} = 12d$$, the same answer we got before.
 
-  * If the above process seems familiar to dynamic programming, it's because that's exactly what it is! 
+  * If the above process seems familiar to dynamic programming, it's because that's exactly what it is!
     * We store the partial derivatives \(also called "gradients"\) which we had computed earlier, and use those to calculate further gradient values. 
     * Note that we can only do so while moving from the outputs towards the inputs of the graph, i.e. "backwards" from the normal flow of data.
   * Note that for $$\frac{\partial g}{\partial d}$$, unlike the previous gradients, we obtain the answer in terms of the input $$a$$.
@@ -107,7 +107,7 @@ However, as we move further towards the inputs of the graph, it gets more compli
       $$
   * Also note that, we can choose how far we want to "unroll" the final value. 
     * We could have stopped at $$12d$$ OR $$60b + 72$$, and used it to calculate $$\frac{\partial g}{\partial d}|_{(d=\dots)}$$ OR $$\frac{\partial g}{\partial d}|_{(b=\dots)}$$, respectively. Which one we would chooose depends on whether we had the values of $$d$$ or $$b$$ pre-computed. 
-* We can now confidently use chain-rule to calculate $$\frac{\partial g}{\partial c}$$. 
+* We can now confidently use chain-rule to calculate $$\frac{\partial g}{\partial c}$$.
   * Since $$c$$ is only consumed by $$e$$ \(i.e. $$c$$'s only _dependent_ is $$e$$\), we have:
 
     $$
@@ -115,7 +115,7 @@ However, as we move further towards the inputs of the graph, it gets more compli
       = 6 \cdot \frac{\partial (7c + d^2)}{\partial c} = 6(7) \\
       \therefore \frac{\partial g}{\partial c} = 42
     $$
-* Let's continue with our example, and calculate the value of $$\frac{\partial g}{\partial b}$$. But if we look at the diagram, $$b$$ feeds into both $$c$$ and $$d$$...which one do we pick as the "precomputed" value? 
+* Let's continue with our example, and calculate the value of $$\frac{\partial g}{\partial b}$$. But if we look at the diagram, $$b$$ feeds into both $$c$$ and $$d$$...which one do we pick as the "precomputed" value?
   * The answer is: **both**. In this situation, we must use an extension of the normal chain rule, called [Multivariable Chain rule](https://github.com/ARDivekar/Simple-English-Machine-Learning/tree/daa376ac4fc17ced66f3fa43d5dc4f43ec3c10dc/math/calculus/partial-derivatives/chain-rule-and-multivariable-chain-rule.html#case-with-single-variable).
   * Under Multivariable chain rule, to get the partial derivative of $$g$$ with respect to $$b$$, we must take the **sum of products of gradients along all possible paths, traced backwards from** $$g$$ **to** $$b$$.
     * From the graph, there are two paths from $$g$$ to $$b$$: $$g \rightarrow f \rightarrow e \rightarrow d \rightarrow b$$ and $$g \rightarrow f \rightarrow e \rightarrow c \rightarrow b$$. 
@@ -166,7 +166,7 @@ However, as we move further towards the inputs of the graph, it gets more compli
 
       ...which is what we had obtained using the Multivariable chain rule.
 
->
+&gt;
 
 ### Gradient-flow graph for example 1
 
