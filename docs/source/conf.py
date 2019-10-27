@@ -29,6 +29,8 @@ author = 'Abhishek Divekar'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 
+master_doc = 'index'
+
 extensions = [ 'recommonmark', 'sphinx.ext.mathjax' ]
 
 ## Source for mathjax_config: https://www.sphinx-doc.org/en/master/usage/extensions/math.html#module-sphinx.ext.mathjax, https://stackoverflow.com/a/11296416
