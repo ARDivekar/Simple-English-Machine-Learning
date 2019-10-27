@@ -26,6 +26,7 @@ Vectorized feedforward with a single sample
 ---------------------------------------------------------------------------------------------------
 
 .. figure:: /_static/img/neural-networks/basic-feedforward-neural-networks/basic-feed-forward-neural-network.png
+    :align: center
     :alt: Basic Feedforward Neural Network
 
     Basic Feedforward Neural Network

@@ -78,11 +78,13 @@ The situation is similar for matrices:
       * We can index each variable of this matrix using the notation: :math:`A_{(i,j)}` where :math:`i \in \{0, \dots, 11\}` and :math:`j \in \{0, \dots, 15\}`.
 
 .. figure:: /_static/img/tensors/lincoln-grayscale-matrix.png
+    :align: center
     :alt: An image matrix of Abraham Lincoln.
 
     An image matrix of Abraham Lincoln. Source: http://ai.stanford.edu/~syyeung/cvweb/tutorial1.html    
 
 .. figure:: /_static/img/tensors/lincoln-3d-intensity-plot.png
+    :align: center
     :alt: 3D Intensity plot of Abraham Lincoln.
 
     3D Intensity plot of Abraham Lincoln. Source: https://summations.github.io/snippets/cv/intensityplot/
@@ -92,6 +94,7 @@ A tensor is just an extension of this concept to more dimensions.
 * Let's start slow. Imagine if you will, a box which "contains" a real-valued variable. We can say this represents a scalar :math:`A = \alpha \in \mathbb{R}`.
 
 .. figure:: /_static/img/tensors/tensor-order-0.png
+    :align: center
     :alt: Tensor of order 0
 
     Tensor of order 0
@@ -99,6 +102,7 @@ A tensor is just an extension of this concept to more dimensions.
 * Now, let's copy the box a certain number of times along a single dimension. Say, 5 times. This will represent a vector :math:`A = \bar{a} \in \mathbb{R}^{5}`. It has 5 variables, which we can index as :math:`A_0, A_1, \dots, A_4`.
 
 .. figure:: /_static/img/tensors/tensor-order-1.png
+    :align: center
     :alt: Tensor of order 1
 
     Tensor of order 1
@@ -106,6 +110,7 @@ A tensor is just an extension of this concept to more dimensions.
 * Let's copy this *vector* 4 times along another dimension. This now becomes a 5 x 4 matrix :math:`A \in \mathbb{R}^{5 \times 4}`. We index each variable as :math:`A_{i, j}` where :math:`i \in \{0, 1, \dots, 4\}` and :math:`j \in \{0, 1, \dots, 3\}`.
 
 .. figure:: /_static/img/tensors/tensor-order-2.png
+    :align: center
     :alt: Tensor of order 2
 
     Tensor of order 2
@@ -113,6 +118,7 @@ A tensor is just an extension of this concept to more dimensions.
 * Let's keep going, and copy this matrix 2 times along the z-axis, to get an order-3 tensor, i.e. a **cuboid of variables** :math:`\mathcal{A} \in \mathbb{R}^{5 \times 4 \times 2}`.
 
 .. figure:: /_static/img/tensors/tensor-order-3.png
+    :align: center
     :alt: Tensor of order 3
 
     Tensor of order 3
@@ -120,6 +126,7 @@ A tensor is just an extension of this concept to more dimensions.
 * Let's just review our progression so far:
 
 .. figure:: /_static/img/tensors/tensors-order-0-1-2-3.png
+    :align: center
     :alt: Tensors of order 0, 1, 2, 3
 
     Tensors of order 0, 1, 2, 3
@@ -128,6 +135,7 @@ A tensor is just an extension of this concept to more dimensions.
 * However, in real-life problems, your data is finite! We can use this trick to visualize an order-4 tensor, by copying the \(finite\) cuboid a certain number of times along an existing axis. Let's say we copy it 3 times and get a tensor :math:`\mathcal{A} \in \mathbb{R}^{5 \times 4 \times 2 \times 3}`. I have used different colors in the figure below to demark where the cuboid was copied.
 
 .. figure:: /_static/img/tensors/tensor-order-4.png
+    :align: center
     :alt: Tensor of order 4
 
     Tensor of order 4
@@ -135,17 +143,23 @@ A tensor is just an extension of this concept to more dimensions.
 * We can continue using this process, and create tensors of higher and higher order by copying the entire structure a :math:`N` times. :math:`N` now becomes the length of the newest dimension. E.g. we copy the 4D tensor above 2 times to get :math:`\mathcal{A} \in \mathbb{R}^{5 \times 4 \times 2 \times 3 \times 2}`.
 
 .. figure:: /_static/img/tensors/tensor-order-5.png
+    :align: center
     :alt: Tensor of order 5
 
     Tensor of order 5
 
 * We thus define a general tensor of order :math:`d` using the notation :math:`\mathcal{A} \in \mathbb{R}^{N_1, N_2, \dots, N_d}`.
     * This notation should help clarify the confusion that occasionally occurs when we talk of "vectors with d dimensions" versus "tensors with d dimensions". The former usually means :math:`\bar{a} \in \mathbb{R}^{d}` whereas the latter means :math:`\mathcal{A} \in \mathbb{R}^{N_1, N_2, \dots, N_d}`. 
+    
 * Remember, each of these boxes in the figures above is a **variable**. It has a particular range of values it takes. For lower order tensors \(vectors especially\) it is possible that each variable has its own range, as we had in the previous example of housing data. However, for higher-order tensors, usually starting with matrices, each variable tends to have the same range, e.g. 0-255 for each pixel in our grayscale image of Abraham Lincoln.
+    
     * Even for vectors, where the ranges can be different, we usually tend to *normalize* each variable to the same range as a pre-processing step. Usually the range :math:`[0, 1]` or :math:`[-1, 1]` is chosen. This is done to speed up certain optimization algorithms \(e.g. gradient descent\).
+
 * We now revisit the definition we stated at the beginning: a tensor is a extension of a vector, which is itself an extension of a scalar. To speak in general terms:
     * A scalar is a single real-value in a particular range, i.e. it is a single variable.
+    
     * A vector is an arrangement of a *variable* number of variables \(scalars\), along a single dimension.
+    
     * A tensor is an arrangement of a variable number of variables \(scalars\), along a *variable* number of dimensions.
 
 Side note: I drew all the above diagrams using `VoxelBuilder <http://voxelbuilder.com>`_. It's pretty fun, you should try it out!

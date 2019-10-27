@@ -24,13 +24,17 @@ The network's job is to fit the dataset well and reduce the error on training sa
         * E.g. if our dataset consists of black-and-white images, each of which is 32x32 pixels across, and where each pixel takes is a grey value between 0 and 127, then we can represent each sample's input as a 32x32 matrix of variables, i.e. :math:`D^{(i)} \in \mathbb{R}^{(32, 32)}`. If we want the grey value at the :math:`3^{th}` row and :math:`5^{th}` column of the :math:`9^{th}` image, we would index it as: :math:`D^{(8)}_{(2, 4)}` \(remember, we use zero-indexing\).
 
 .. figure:: /_static/img/neural-networks/basic-feedforward-neural-networks/indexing-a-32x32-image-matrix.png
+    :align: center
     :alt: Indexing a 32x32 image matrix
 
     Indexing a 32x32 image matrix
 
 * :math:`Y^{(i)}` is the output part of the :math:`i^{th}` sample. It is also known as the *target* or the *ground truth value*.
     * For regression problems, :math:`Y_{(i)}` will be a scalar. E.g. if we are performing housing-price prediction, :math:`Y^{(10)} = 598` might mean that the price of the :math:`11^{th}` house is $598,000.
-    * For classification problems, :math:`Y^{(i)}` will belong to one \(or more\) of :math:`K` *classes* or *labels*. E.g. for single-label image classification, :math:`Y^{(7)} = Cat` means that the :math:`8^{th}` image is actually a cat. Whereas if our problem is multi-label classification, we might have :math:`Y^{(31)} = \begin{matrix} \{Cat, & Dog, & Horse\} \end{matrix}`, meaning our sample actually contains a cat, dog and a horse.
+    
+    * For classification problems, :math:`Y^{(i)}` will belong to one \(or more\) of :math:`K` *classes* or 
+    
+    *labels*. E.g. for single-label image classification, :math:`Y^{(7)} = Cat` means that the :math:`8^{th}` image is actually a cat. Whereas if our problem is multi-label classification, we might have :math:`Y^{(31)} = \begin{matrix} \{Cat, & Dog, & Horse\} \end{matrix}`, meaning our sample actually contains a cat, dog and a horse.
 
         * During classification, an important representation of each target variable is *one-hot encoding*. In this representation, we assign each of the :math:`K` possible classes to index of a vector, and every target thus becomes a vector of ones and zeros, depending on whether that class is present in the sample or not.
 
@@ -76,6 +80,7 @@ The most vanilla form of a neural network is a sequence of layers, each of which
 We say that neuron "owns" a vector of weights. It takes as input a vector from the previous layer, along with a linear bias, and computes the dot product of these two vectors \(this operation is called an *affine transform*\). This scalar affine value is then transformed by a non-linear *activation function* \(denoted :math:`f(x)`\) to obtain another scalar value, which is the neuron's output.
 
 .. figure:: /_static/img/neural-networks/basic-feedforward-neural-networks/basic-neuron.png
+    :align: center
     :alt: Basic Neuron
 
     Basic Neuron
@@ -151,6 +156,7 @@ Note:
 * In the case of recurrent networks, the input of each layer is not only the output of the previous layer in the network, but also the output of the *same* layer in the previous time step \(i.e. for the previous sample :math:`D^{(i-1)}`\).
 
 .. figure:: /_static/img/neural-networks/basic-feedforward-neural-networks/basic-neural-network.png
+    :align: center
     :alt: Basic Neural Network
 
     Basic Neural Network
@@ -191,6 +197,7 @@ Example usage of notation and terminology
 ===================================================================================================
 
 .. figure:: /_static/img/neural-networks/basic-feedforward-neural-networks/basic-neural-network-highlighted.png
+    :align: center
     :alt: Basic Neural Network example
 
     Basic Neural Network example

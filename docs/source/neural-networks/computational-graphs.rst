@@ -29,6 +29,7 @@ For example, consider the expression :math:`e = (a+b) ∗ (b+1)`.
 * To create a computational graph, we make each of these operations, along with the input variables, into nodes. When one node’s value is the input to another node, an arrow goes from one to another.
 
 .. figure:: /_static/img/neural-networks/computational-graphs/colah-blog-basic-computational-graph.png
+    :align: center
     :alt: Fig 1.a: A basic computational graph, courtesy Christopher Olah
 
     Fig 1.a: A basic computational graph, courtesy Christopher Olah
@@ -38,6 +39,7 @@ For example, consider the expression :math:`e = (a+b) ∗ (b+1)`.
 
 
 .. figure:: /_static/img/neural-networks/computational-graphs/colah-blog-basic-computational-graph-calculate.png
+    :align: center
     :alt: Fig 1.b: Calculating the output of a computational graph, courtesy Christopher Olah
 
     Fig 1.b: Calculating the output of a computational graph, courtesy Christopher Olah
@@ -56,6 +58,7 @@ Example: a comprehensive Computational Graph
 
 
 .. figure:: /_static/img/neural-networks/computational-graphs/computational-graphs-ex-1.png
+    :align: center
     :alt: Fig 2.a: Example computational graph
 
     Fig 2.a: Example computational graph
@@ -210,6 +213,7 @@ Gradient-flow graph for example computational graph
 .. _Gradient-flow-graph–for-above-example:
 
 .. figure:: /_static/img/neural-networks/computational-graphs/computational-graphs-ex-1-gradients.png
+    :align: center
     :alt: Fig 2.b: Gradient-flow graph for above example
 
     Fig 2.b: Gradient-flow graph for above example

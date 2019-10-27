@@ -31,6 +31,7 @@ By the multivariable chain rule, we have:
     \frac{\partial z}{\partial t} = \frac{\partial z}{\partial x} \cdot \frac{\partial x}{\partial t} + \frac{\partial z}{\partial y} \cdot \frac{\partial y}{\partial t}
 
 .. figure:: /_static/img/calculus/Multivariable-chain-rule.svg
+    :align: center
     :alt: Multivariable chain rule
     :width: 400pt
 
