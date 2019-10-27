@@ -1,9 +1,7 @@
-node_modules/*
-_book/*
-npm-debug.log
+.vscode/*
+docs/build/*
+docs/_static/img/**/*.pdf
 **/.ipynb_checkpoints/*
 *.aux
 *.log
-.gitbook/assets/img/**/*.pdf
 report*.json
-package-lock.json
