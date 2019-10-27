@@ -1,0 +1,75 @@
+{
+	"TocTree" : {
+		"prefix": [":toctree::"],
+		"body": [".. toctree::\n    :caption: ${1:caption}\n    :maxdepth: 1\n\n    ${2:relative/path/to/file}\n    ${3:relative/path/to/another/file}"],
+		"description": "Table of Contents (TOC) tree in .rst"
+	},
+	
+	"Title": {
+		"prefix": [":title"],
+		"body": ["===================================================================================================\n${1}\n==================================================================================================="],
+		"description": "Add title in .rst files"
+	},
+
+	"Subtitle": {
+		"prefix": [":subtitle"],
+		"body": ["${1}\n==================================================================================================="],
+		"description": "Add subtitles in .rst"
+	},
+
+	"Section title": {
+		"prefix": [":section"],
+		"body": ["${1}\n---------------------------------------------------------------------------------------------------"],
+		"description": "Add section headings in .rst"
+	},
+	
+	"Inline LaTeX Math": {
+		"prefix": [":math"],
+		"body": [":math:`${1:LaTeX expression}`"],
+		"description": "Inline LaTeX math in .rst"
+	},
+
+	"LaTeX Math block" : {
+		"prefix": [":math::"],
+		"body": ["\n  .. math::\n\n    ${1:LaTeX expression}"],
+		"description": "Latex math block in .rst"
+	},
+	
+	"Inline hyperlink": {
+		"prefix": [":link"],
+		"body": ["`${2:description} <${1:link}>`_"],
+		"description": "External links in .rst"
+	},
+
+	"Inline file link": {
+		"prefix": [":file"],
+		"body": [":download:`${2:description} <${1:link}>`"],
+		"description": "Links to hosted files in .rst"
+	},
+
+	"Figure" : {
+		"prefix": [":figure::"],
+		"body": [".. figure:: ${1:picture.png}\n    :align: center\n    :alt: ${2:alttext}\n\n    ${2:caption}"],
+		"description": "Figures in .rst"
+	},
+
+	"Code" : {
+		"prefix": [":code::"],
+		"body": [".. code-block:: ${2:python}\n    :linenos:\n\n    ${1:your code here}"],
+		"description": "Code blocks in .rst"
+	},
+
+	"Create reference label": {
+		"prefix": [":reftarget", ":reflabel"],
+		"body": [".. _${1:my_label}:"],
+		"description": "Cross-reference articles, sections, figures etc in .rst. Source: http://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#cross-referencing-arbitrary-locations"
+		
+	}, 
+
+	"Refer to a label": {
+		"prefix": [":ref"],
+		"body": [":ref:`${1:my_label}`"],
+		"description": "Refer to created lablels in .rst. Source: http://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#cross-referencing-arbitrary-locations"
+		
+	}, 
+}
