@@ -17,9 +17,11 @@
 
 # -- Project information -----------------------------------------------------
 
+import datetime
+
 project = 'Simple English Machine Learning'
-copyright = '2019, Abhishek Divekar'
 author = 'Abhishek Divekar'
+copyright = f'{datetime.datetime.now().year}, {author}'
 
 
 
@@ -31,13 +33,15 @@ author = 'Abhishek Divekar'
 
 master_doc = 'index'
 
-extensions = [ 'recommonmark', 'sphinx.ext.mathjax' ]
+extensions = [ 'recommonmark', 'sphinx.ext.mathjax', 'jupyter_sphinx.execute']
 
 ## Source for mathjax_config: https://www.sphinx-doc.org/en/master/usage/extensions/math.html#module-sphinx.ext.mathjax, https://stackoverflow.com/a/11296416
 mathjax_config = {
     "jax": ["input/TeX","output/HTML-CSS"],
     "displayAlign": "left"
 }
+
+## Source for Jupyter config: https://jupyter-sphinx.readthedocs.io/en/latest/
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

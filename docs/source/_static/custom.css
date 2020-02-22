@@ -1,0 +1,57 @@
+div.jupyter_container {
+    overflow: auto;
+}
+
+table.dataframe {
+    border: 1px solid grey;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    font-family: Helvetica, Arial, sans-serif;
+    margin-top: 1em;
+}
+
+/* Table header: */
+table.dataframe thead {
+    background: whitesmoke;
+    background: -moz-linear-gradient(top, whitesmoke 0%, whitesmoke 66%, whitesmoke 100%);
+    background: -webkit-linear-gradient(top, whitesmoke 0%, whitesmoke 66%, whitesmoke 100%);
+    background: linear-gradient(to bottom, whitesmoke 0%, whitesmoke 66%, whitesmoke 100%);
+    border-bottom: 2px solid grey;
+}
+table.dataframe thead th {
+    font-size: 0.95em;
+    text-align: center;
+    font-weight: normal;
+}
+
+/* Table Body: */
+table.dataframe td, table.dataframe th {
+    border: 1px solid grey;
+    margin: 0;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+/** Leftmost cell of row (i.e. index): */
+table.dataframe tbody th {
+    font-size: 0.95em;
+    text-align: right;
+    font-weight: normal;
+}
+table.dataframe tbody td {
+    font-size: 0.85em;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Footer: */
+table.dataframe tfoot {
+    font-size: 1em;
+    color: #000000;
+    border-top: 3px solid #000000;
+}
+table.dataframe tfoot td {
+    font-size: 1em;
+}
