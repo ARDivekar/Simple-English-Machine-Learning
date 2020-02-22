@@ -18,6 +18,7 @@ Welcome to Simple English Machine Learning's documentation!
 
        math/index
        neural-networks/index
+       natural-language-processing/index
 
 
 Indices and tables
